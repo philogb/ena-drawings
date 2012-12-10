@@ -10,7 +10,7 @@ window.addEvent('domready', function() {
     onError: function() {
       console.log('error', arguments);
     }
-  }).send();
+  }).get();
 
   function renderDrawings(drawings) {
     //generate markup
