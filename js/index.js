@@ -15,7 +15,7 @@ window.addEvent('domready', function() {
   function renderDrawings(drawings) {
     //generate markup
     var html = drawings.map(function(d) {
-      return '<div class=\'comic\'>' +
+      return '<article class=\'comic\'>' +
         '<h3 class=\'title\'>' +
           (d.title || 'untitled') +
         '</h3>' +
@@ -23,15 +23,15 @@ window.addEvent('domready', function() {
         (d.img.length > 1 ? ' <div class=\'nav\'>' +
          d.img.length + ' frames. Click image for next frame.</div>' : '') +
 
-        '<div class=\'frames\'>' +
+        '<figure class=\'frames\'>' +
           d.img.map(function(src, i) {
             return '<img src=\'img/' + src + '.' + d.format +
               '\' class=\'' + (i === 0 ? 'show' : 'hide') + '\'' +
               'title=\'' + (i + 1) + ' of ' + d.img.length + ' - click to see next \' />';
           }).join('') +
-        '</div>' +
         '<figcaption>' + (d.description || 'by ena') + '</figcaption>' +
-        '</div>';
+        '</figure>' +
+        '</article>';
     });
     var main = document.body.getElement('.main');
     main.innerHTML = html.join('');
@@ -39,7 +39,7 @@ window.addEvent('domready', function() {
     //add event(s)
     main.addEvent('click:relay(img)', function(e) {
       var img = this,
-          next = img.getNext() || img.getParent().getElement('img');
+          next = img.getNext('img') || img.getParent().getElement('img');
       img.className = 'hide';
       next.className = 'show';
     });
