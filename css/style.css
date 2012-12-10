@@ -1,0 +1,32 @@
+html, body {
+  text-align: center;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+.comic {
+  border-top: 1px dashed #aaa;
+}
+
+.comic img {
+  box-shadow: 0 0 5px #aaa;
+  max-width: 1000px;
+  cursor: pointer;
+}
+
+.comic img.hide {
+  display: none;
+}
+
+.comic .frames {
+  margin: 100px auto;
+}
+
+.comic figcaption {
+  display: block;
+  margin: 0 auto 20px auto;
+  font-size: 0.9em;
+  font-style: italic;
+}
