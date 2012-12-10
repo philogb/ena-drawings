@@ -15,19 +15,22 @@ window.addEvent('domready', function() {
   function renderDrawings(drawings) {
     //generate markup
     var html = drawings.map(function(d) {
+      var l = d.img.length;
       return '<article class=\'comic\'>' +
         '<h3 class=\'title\'>' +
           (d.title || 'untitled') +
         '</h3>' +
 
-        (d.img.length > 1 ? ' <div class=\'nav\'>' +
-         d.img.length + ' frames. Click image for next frame.</div>' : '') +
+        (l > 1 ? ' <div class=\'nav\'>' +
+         l + ' frames. Click image for next frame.</div>' : '') +
 
         '<figure class=\'frames\'>' +
           d.img.map(function(src, i) {
             return '<img src=\'img/' + src + '.' + d.format +
               '\' class=\'' + (i === 0 ? 'show' : 'hide') + '\'' +
-              'title=\'' + (i + 1) + ' of ' + d.img.length + ' - click to see next \' />';
+              'title=\'' +
+              (l > 1 ? (i + 1) + ' of ' + l + ' - click to see next' : '') +
+              '\' />';
           }).join('') +
         '<figcaption>' + (d.description || 'by ena') + '</figcaption>' +
         '</figure>' +
